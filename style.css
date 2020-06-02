@@ -1,0 +1,50 @@
+body {
+  background-image: linear-gradient(#212f3d, #17202a);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.words {
+  width: 50%;
+  letter-spacing: 3px;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid #eaeded;
+  font-family: "Source Code Pro", monospace;
+  display: flex;
+  flex-wrap: wrap;
+}
+.words-off {
+  opacity: 0.5;
+}
+
+.letter {
+  font-size: 2.4rem;
+  display: inline-block;
+  color: white;
+}
+
+.cursor {
+  background-color: white;
+  color: black;
+}
+
+.wrong {
+  color: #ce4552;
+}
+
+.space {
+  padding: 0 5px;
+}
+
+.activate {
+  order: 2;
+  align-self: flex-end;
+  margin-top: 80px;
+}
