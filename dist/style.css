@@ -31,8 +31,24 @@ body {
 }
 
 .cursor {
-  background-color: white;
-  color: black;
+  animation-name: example;
+  animation-duration: 4s;
+  animation: 1s blink step-end infinite;
+}
+@keyframes blink {
+  from,
+  to {
+    background-color: white;
+    color: black;
+  }
+  50% {
+    background-color: transparent;
+    color: white;
+  }
+}
+
+.correct {
+  color: gray;
 }
 
 .wrong {
