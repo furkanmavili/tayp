@@ -119,6 +119,7 @@ function draw() {
   });
   alleters = document.querySelectorAll(".letter");
 }
+
 // when typing is end, clear the screen
 function clear() {
   current = 0;
