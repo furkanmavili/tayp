@@ -1,4 +1,10 @@
 Todo:
-  ☐ Add wpm speed and mistake number to page
-  ☐ Add localstorage and save all wpm speeds/mistakes and calculate average
-  ☐ Maybe save the mistake letters and show in the page.
+  ✔ Add wpm speed and mistake number to page @done(20-06-19 15:19)
+  ✔ Add localstorage and save all wpm speeds/mistakes and calculate average @done(20-06-20 19:08)
+  ✔ Add statistic graph @done(20-06-20 19:08)
+  ✘ Maybe save the mistake letters and show in the page. @cancelled(20-06-19 15:20)
+  ✔ Add footer @done(20-06-20 14:52)
+  ✔ Calculate speed when user press to first key @done(20-06-20 15:32)
+  ☐ Add total samples count and show in statistics section
+  ☐ Databaseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+  ☐ Publish

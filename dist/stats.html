@@ -1,14 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tayp</title>
+    <title>Tayp-Stats</title>
     <link rel="stylesheet" href="style.css" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
-      rel="stylesheet"
-    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
@@ -26,18 +22,18 @@
     <header>
       <h1 class="logo"><a href="index.html">Tayp</a></h1>
     </header>
-    <section class="score">
-      <h2 id="speed">Speed:</h2>
-      <h2 id="errors">Errors:</h2>
-      <h2 id="accuracy">Accuracy:</h2>
-    </section>
-    <div class="container">
-      <div class="words">
-        <div class="activate">
-          Click to activate
-        </div>
-      </div>
+    <div class="chart-container">
+      <h2 class="no-data">There is no data.</h2>
+      <canvas id="chart"></canvas>
     </div>
-    <script src="homePage.js"></script>
+    <div class="statistics">
+      <h1 class="statistics-title">Statistics</h1>
+      <h2 id="top-speed">Top Speed:</h2>
+      <h2 id="avg-speed">Average Speed:</h2>
+      <h2 id="avg-error">Average Error:</h2>
+      <h2 id="avg-accuracy">Average Accuracy:</h2>
+      <h2 id="total-sample">Total Sample:</h2>
+    </div>
+    <script src="statPage.js"></script>
   </body>
 </html>
