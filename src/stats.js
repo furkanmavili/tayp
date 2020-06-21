@@ -96,4 +96,5 @@ function calculateAvg() {
   as.textContent += " " + speedAvg + " wpm";
   ae.textContent += " " + errorAvg;
   aa.textContent += " " + accAvg + "%";
+  totSample.textContent += " " + data.length;
 }

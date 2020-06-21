@@ -15,6 +15,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "chart.js": "^2.9.3"
+    "chart.js": "^2.9.3",
+    "micromodal": "^0.4.6"
   }
 }

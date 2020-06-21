@@ -1,5 +1,7 @@
 import word from "./words";
 import keyMaps from "./keyMaps";
+import MicroModal from "micromodal";
+MicroModal.init();
 let wordArea = document.querySelector(".words");
 let words = "";
 let swords = [];
@@ -64,7 +66,7 @@ function start(e) {
 // generates word list from mostcommon words
 function generate() {
   swords = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 20; i++) {
     let random = Math.round(Math.random() * 999);
     swords.push(word.mostCommon[random]);
     swords.push(" ");
@@ -72,7 +74,7 @@ function generate() {
   swords.pop();
   words = swords.join("");
 }
-// loop through swords array and creates span elements to wordArea
+// loop through swords array and appends span elements to wordArea
 function draw() {
   generate();
   swords.forEach((e) => {
@@ -94,7 +96,7 @@ function draw() {
   alleters = document.querySelectorAll(".letter");
 }
 
-// when typing is end, clear the screen
+// when typing is end, remove all letters
 function clear() {
   current = 0;
   while (wordArea.firstChild) {
@@ -143,7 +145,6 @@ function calculate() {
   }
 
   localStorage.setItem("stats", JSON.stringify(stats));
-  localStorageCalc();
   speed.innerHTML = `Speed: ${wpm}`;
   errors.innerHTML = `Errors: ${wrong}`;
   acc.innerHTML = `Accuracy: ${ac}%`;
@@ -174,21 +175,53 @@ function accuracy() {
   return Math.floor(percentage);
 }
 
-function localStorageCalc() {
-  const items = JSON.parse(localStorage.getItem("stats"));
-
-  let totalSpeed = 0;
-  let totalError = 0;
-  let totalAcc = 0;
-  items.forEach((item) => {
-    totalSpeed += item.speed;
-    totalError += item.error;
-    totalAcc += item.accuracy;
-  });
-  const speedAvg = Number(totalSpeed / items.length).toFixed(2);
-  console.log("speed:", speedAvg);
-  const errorAvg = Number(totalError / items.length).toFixed(2);
-  console.log("error:", errorAvg);
-  const accAvg = Math.floor(totalAcc / items.length);
-  console.log("acc:", accAvg);
+// light/dark mode
+let currentMode = "dark";
+function changeMode() {
+  console.log(("mode:", currentMode));
+  if (currentMode == "dark") {
+    document.documentElement.style.setProperty(`--dark`, "#f5f5f5");
+    document.documentElement.style.setProperty(`--light`, "#313131");
+    document.documentElement.style.setProperty(`--accent-color`, "#d8737a");
+    currentMode = "light";
+  } else {
+    document.documentElement.style.setProperty(`--dark`, "#313131");
+    document.documentElement.style.setProperty(`--light`, "#f5f5f5");
+    document.documentElement.style.setProperty(`--accent-color`, "#ca3e47");
+    currentMode = "dark";
+  }
 }
+const mode = document.querySelector(".fa-adjust");
+mode.addEventListener("click", changeMode);
+
+// Expand word area
+
+const scoreArea = document.querySelector(".score");
+const nav = document.querySelector("nav");
+function resize(e) {
+  if ([...e.target.classList].includes("fa-expand-alt")) {
+    if ([...wordArea.classList].includes("expand-words")) {
+      wordArea.classList.remove("expand-words");
+      scoreArea.style.display = "block";
+      removeExpandIcon();
+    } else {
+      wordArea.classList.add("expand-words");
+      scoreArea.style.display = "none";
+      createExpandIcon();
+    }
+  }
+}
+function createExpandIcon() {
+  console.log("hi");
+
+  const i = document.createElement("i");
+  i.classList.add("fas");
+  i.classList.add("fa-expand-alt");
+  nav.appendChild(i);
+}
+function removeExpandIcon() {
+  const ic = document.querySelector("nav .fa-expand-alt");
+  ic.remove();
+}
+nav.addEventListener("click", resize);
+scoreArea.addEventListener("click", resize);

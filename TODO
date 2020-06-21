@@ -5,6 +5,10 @@ Todo:
   ✘ Maybe save the mistake letters and show in the page. @cancelled(20-06-19 15:20)
   ✔ Add footer @done(20-06-20 14:52)
   ✔ Calculate speed when user press to first key @done(20-06-20 15:32)
-  ☐ Add total samples count and show in statistics section
+  ✔ Add total samples count and show in statistics section @done(20-06-21 14:04)
+  ✔ Light/Dark mode @done(20-06-21 16:12)
+  ✔ Add modal @done(20-06-21 16:12)
+  ✔ Add resize to word area @done(20-06-21 16:13)
+  ☐ Add mistake letter graph
   ☐ Databaseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
   ☐ Publish
