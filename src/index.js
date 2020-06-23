@@ -2,12 +2,12 @@ import word from "./words";
 import keyMaps from "./keyMaps";
 import MicroModal from "micromodal";
 MicroModal.init();
+const wordNumber = 20;
 let wordArea = document.querySelector(".words");
 let words = "";
 let swords = [];
 let alleters;
 draw();
-
 let current = 0;
 alleters[current].classList.add("cursor");
 
@@ -66,7 +66,7 @@ function start(e) {
 // generates word list from mostcommon words
 function generate() {
   swords = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < wordNumber; i++) {
     let random = Math.round(Math.random() * 999);
     swords.push(word.mostCommon[random]);
     swords.push(" ");
@@ -158,6 +158,18 @@ function totalError() {
       error++;
     }
   });
+  const fil = [...alleters]
+    .filter((letter) => [...letter.classList].includes("wrong"))
+    .map((i) => i.textContent)
+    .reduce((acc, item) => {
+      if (!acc[item]) {
+        acc[item] = 0;
+      }
+      acc[item]++;
+      return acc;
+    }, {});
+  console.log("hatali kelime: ", fil);
+
   return error;
 }
 

@@ -1,5 +1,6 @@
 import Chart from "chart.js";
-
+import MicroModal from "micromodal";
+MicroModal.init();
 var ctx = document.getElementById("chart");
 const nodata = document.querySelector(".no-data");
 let data = localStorage.getItem("stats");
