@@ -11,10 +11,6 @@ draw();
 let current = 0;
 alleters[current].classList.add("cursor");
 
-window.addEventListener("click", isFocused);
-document.onload = function () {
-  wordArea.focus();
-};
 // curtime end finTime for calculate wpm speed
 let curTime;
 let finTime;
@@ -130,6 +126,9 @@ function calculate() {
   const wrong = totalError();
   let wpm = (words.length / 5 - wrong) / min;
   wpm = Math.floor(wpm);
+  if (wpm < 0) {
+    wpm = 0;
+  }
   const ac = accuracy();
   const stat = {
     speed: wpm,
@@ -143,21 +142,36 @@ function calculate() {
   } else {
     stats.push(stat);
   }
-
+  setWrongLetter();
   localStorage.setItem("stats", JSON.stringify(stats));
   speed.innerHTML = `Speed: ${wpm}`;
   errors.innerHTML = `Errors: ${wrong}`;
   acc.innerHTML = `Accuracy: ${ac}%`;
 }
-
-// loop through all letters and count "wrong" class in classList
-function totalError() {
-  let error = 0;
-  alleters.forEach((el) => {
-    if ([...el.classList].includes("wrong")) {
-      error++;
+// sum of same keys values in objects, thx to stackoverflow
+function sumObjectsByKey(...objs) {
+  return objs.reduce((a, b) => {
+    for (let k in b) {
+      if (b.hasOwnProperty(k)) a[k] = (a[k] || 0) + b[k];
     }
-  });
+    return a;
+  }, {});
+}
+function setWrongLetter() {
+  const getItem = localStorage.getItem("wrongLetters");
+  const wrongs = getWrongLetters();
+  console.log(wrongs);
+
+  let result;
+  if (!getItem) {
+    localStorage.setItem("wrongLetters", JSON.stringify(wrongs));
+  } else {
+    result = sumObjectsByKey(wrongs, JSON.parse(getItem));
+    localStorage.setItem("wrongLetters", JSON.stringify(result));
+  }
+  console.log("get item: ", localStorage.getItem("wrongLetters"));
+}
+function getWrongLetters() {
   const fil = [...alleters]
     .filter((letter) => [...letter.classList].includes("wrong"))
     .map((i) => i.textContent)
@@ -168,14 +182,21 @@ function totalError() {
       acc[item]++;
       return acc;
     }, {});
-  console.log("hatali kelime: ", fil);
-
+  return fil;
+}
+// loop through all letters and count "wrong" class in classList
+function totalError() {
+  let error = 0;
+  alleters.forEach((el) => {
+    if ([...el.classList].includes("wrong")) {
+      error++;
+    }
+  });
   return error;
 }
 
 // calulate accuracy. (correct - wrong) * 100 / total characters
 function accuracy() {
-  console.log("new");
   let correct = 0;
   alleters.forEach((el) => {
     if (![...el.classList].includes("wrong")) {
@@ -183,7 +204,6 @@ function accuracy() {
     }
   });
   const percentage = (100 * correct) / alleters.length;
-  console.log("correct:", correct, "total:", alleters.length);
   return Math.floor(percentage);
 }
 

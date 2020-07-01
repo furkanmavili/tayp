@@ -23,6 +23,7 @@ const aa = document.getElementById("avg-accuracy");
 const totSample = document.getElementById("total-sample");
 calculateAvg();
 // -------------------------------------------------------
+Chart.defaults.global.defaultFontColor = "white";
 var myLineChart = new Chart(ctx, {
   type: "line",
   data: {
@@ -99,3 +100,42 @@ function calculateAvg() {
   aa.textContent += " " + accAvg + "%";
   totSample.textContent += " " + data.length;
 }
+
+const wrongLetters = localStorage.getItem("wrongLetters");
+let keys;
+let values;
+if (!wrongLetters) {
+  keys = [];
+  values = [];
+} else {
+  keys = Object.keys(JSON.parse(wrongLetters));
+  values = Object.values(JSON.parse(wrongLetters));
+}
+const barChartData = {
+  labels: keys,
+  datasets: [
+    {
+      label: "Errors",
+      backgroundColor: "rgb( 0, 131, 254)",
+      borderWidth: 1,
+      data: values,
+    },
+  ],
+};
+window.onload = function () {
+  var ctx = document.getElementById("wrong-letter-chart").getContext("2d");
+  window.myBar = new Chart(ctx, {
+    type: "bar",
+    data: barChartData,
+    options: {
+      responsive: true,
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Wrong Letters",
+      },
+    },
+  });
+};

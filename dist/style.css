@@ -151,7 +151,15 @@ nav i:hover {
     margin: 0;
   }
   i {
-    font-size: 1.75rem;
+    font-size: 1.5rem !important;
+  }
+  .chart-container {
+    height: 200px !important;
+    width: 95% !important;
+    background-color: red;
+  }
+  .statistics {
+    font-size: 0.75rem;
   }
 }
 
@@ -162,7 +170,7 @@ canvas {
 }
 .chart-container {
   position: relative;
-  margin: auto;
+  margin: 2em auto;
   height: 75vh;
   width: 70vw;
 }
