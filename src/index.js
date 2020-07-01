@@ -14,7 +14,7 @@ alleters[current].classList.add("cursor");
 // curtime end finTime for calculate wpm speed
 let curTime;
 let finTime;
-
+window.addEventListener("click", isFocused);
 let activate = document.querySelector(".activate");
 // checks wordArea is focused or not, if so start keyboard event.
 function isFocused(e) {
