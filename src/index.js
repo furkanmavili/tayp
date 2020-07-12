@@ -2,7 +2,7 @@ import word from "./words";
 import keyMaps from "./keyMaps";
 import MicroModal from "micromodal";
 MicroModal.init();
-const wordNumber = 5;
+const wordNumber = 20;
 let wordArea = document.querySelector(".words");
 let words = "";
 let swords = [];
