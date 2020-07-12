@@ -2,7 +2,7 @@ import word from "./words";
 import keyMaps from "./keyMaps";
 import MicroModal from "micromodal";
 MicroModal.init();
-const wordNumber = 20;
+const wordNumber = 5;
 let wordArea = document.querySelector(".words");
 let words = "";
 let swords = [];
@@ -160,7 +160,6 @@ function sumObjectsByKey(...objs) {
 function setWrongLetter() {
   const getItem = localStorage.getItem("wrongLetters");
   const wrongs = getWrongLetters();
-  console.log(wrongs);
 
   let result;
   if (!getItem) {
@@ -169,7 +168,6 @@ function setWrongLetter() {
     result = sumObjectsByKey(wrongs, JSON.parse(getItem));
     localStorage.setItem("wrongLetters", JSON.stringify(result));
   }
-  console.log("get item: ", localStorage.getItem("wrongLetters"));
 }
 function getWrongLetters() {
   const fil = [...alleters]
@@ -182,6 +180,7 @@ function getWrongLetters() {
       acc[item]++;
       return acc;
     }, {});
+  console.log(fil);
   return fil;
 }
 // loop through all letters and count "wrong" class in classList
@@ -209,20 +208,24 @@ function accuracy() {
 
 // light/dark mode
 let currentMode = "dark";
+function changeStyle(variable, value) {
+  document.documentElement.style.setProperty(variable, value);
+  // body...
+}
 function changeMode() {
-  console.log(("mode:", currentMode));
   if (currentMode == "dark") {
-    document.documentElement.style.setProperty(`--dark`, "#f5f5f5");
-    document.documentElement.style.setProperty(`--light`, "#313131");
-    document.documentElement.style.setProperty(`--accent-color`, "#d8737a");
+    changeStyle(`--dark`, "#f5f5f5");
+    changeStyle(`--light`, "#313131");
+    changeStyle(`--accent-color`, "#d8737a");
     currentMode = "light";
   } else {
-    document.documentElement.style.setProperty(`--dark`, "#313131");
-    document.documentElement.style.setProperty(`--light`, "#f5f5f5");
-    document.documentElement.style.setProperty(`--accent-color`, "#ca3e47");
+    changeStyle(`--dark`, "#313131");
+    changeStyle(`--light`, "#f5f5f5");
+    changeStyle(`--accent-color`, "#ca3e47");
     currentMode = "dark";
   }
 }
+
 const mode = document.querySelector(".fa-adjust");
 mode.addEventListener("click", changeMode);
 
@@ -244,8 +247,6 @@ function resize(e) {
   }
 }
 function createExpandIcon() {
-  console.log("hi");
-
   const i = document.createElement("i");
   i.classList.add("fas");
   i.classList.add("fa-expand-alt");

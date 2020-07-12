@@ -47,9 +47,10 @@ header {
   background-color: var(--accent-color);
   font-family: "Roboto", sans-serif;
 }
-.score h2 {
+.score h2,
+.score i {
   display: inline-block;
-  padding-right: 4em;
+  padding-right: 1em;
 }
 .words {
   width: 50%;
@@ -72,7 +73,7 @@ header {
 }
 
 .letter {
-  font-size: 2.4rem;
+  font-size: 2rem;
   display: inline-block;
   color: var(--light);
 }
@@ -129,7 +130,12 @@ nav i,
 nav i:hover {
   color: var(--accent-color);
 }
-
+@media (min-width: 1001px) and (max-width: 1360px) {
+  .words,
+  .score {
+    width: 70%;
+  }
+}
 @media only screen and (max-width: 1000px) {
   .words {
     width: 90%;
@@ -225,9 +231,10 @@ canvas {
   background-color: white;
   padding: 0px;
   max-width: 740px;
-  height: 75vh;
+  height: 30vh;
   width: 50%;
-  border-radius: 0px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
   overflow: hidden;
   box-sizing: border-box;
 }
