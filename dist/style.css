@@ -104,7 +104,7 @@ header {
 }
 
 .space {
-  padding: 0 5px;
+  padding: 0 0.2em;
 }
 
 .activate {
@@ -207,6 +207,16 @@ canvas {
   margin: 0;
 }
 
+.enable-punctation {
+  background-color: lightgreen;
+  cursor: pointer;
+  padding: 0.3em;
+  border-radius: 5px;
+  border: 2px solid lightgrey;
+}
+.disable-punctation {
+  background-color: tomato;
+}
 /**************************
   Basic Modal Styles
 **************************/
