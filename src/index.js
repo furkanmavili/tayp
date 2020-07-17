@@ -11,8 +11,8 @@ let alleters;
 draw();
 let current = 0;
 alleters[current].classList.add("cursor");
-
 // curtime end finTime for calculate wpm speed
+console.log("new line");
 let curTime;
 let finTime;
 window.addEventListener("click", isFocused);
@@ -52,9 +52,10 @@ function start(e) {
       finTime = new Date();
       calculate();
       clear();
-      draw();
+      draw;
       reset();
     }
+
     alleters[current].classList.add("cursor");
   } else {
     alleters[current].classList.add("wrong");
@@ -81,7 +82,7 @@ function getRandomPunctation() {
 }
 // Enable/disable punctation
 const enablePuncBtn = document.querySelector(".enable-punctation");
-enablePuncBtn.addEventListener("click", (e) => {
+enablePuncBtn.addEventListener("click", () => {
   if (openPunctation) {
     enablePuncBtn.textContent = "Enable Punctation";
     enablePuncBtn.classList.remove("disable-punctation");
@@ -133,6 +134,7 @@ function show() {
     el.style.opacity = "1";
   });
 }
+
 // if wordArea not focused, opacity = 0.5
 function reset(op) {
   alleters.forEach((el) => {
