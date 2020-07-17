@@ -2,8 +2,9 @@ import word from "./words";
 import keyMaps from "./keyMaps";
 import MicroModal from "micromodal";
 MicroModal.init();
-const wordNumber = 20;
+const wordNumber = 5;
 let openPunctation = false;
+let generatorMode = "alphabet";
 let wordArea = document.querySelector(".words");
 let words = "";
 let swords = [];
@@ -12,7 +13,6 @@ draw();
 let current = 0;
 alleters[current].classList.add("cursor");
 // curtime end finTime for calculate wpm speed
-console.log("new line");
 let curTime;
 let finTime;
 window.addEventListener("click", isFocused);
@@ -52,34 +52,43 @@ function start(e) {
       finTime = new Date();
       calculate();
       clear();
-      draw;
+      draw();
       reset();
     }
-
     alleters[current].classList.add("cursor");
   } else {
     alleters[current].classList.add("wrong");
   }
 }
 
-// generates word list from mostcommon words
+// generates words or numeric values
 function generate() {
   swords = [];
-  for (let i = 0; i < wordNumber; i++) {
-    let random = Math.round(Math.random() * 999);
-    swords.push(word.mostCommon[random]);
-    if (openPunctation) {
-      swords.push(getRandomPunctation());
+  if (generatorMode === "alphabet") {
+    for (let i = 0; i < wordNumber; i++) {
+      let random = Math.floor(Math.random() * 999);
+      swords.push(word.mostCommon[random]);
+      if (openPunctation) {
+        swords.push(getRandomPunctation());
+      }
+      swords.push(" ");
     }
-    swords.push(" ");
+  } else {
+    // generator mode is numeric
+    for (let i = 0; i < 30; i++) {
+      let random = Math.floor(Math.random() * 10);
+      swords.push(String(random));
+    }
   }
   swords.pop();
   words = swords.join("");
 }
+
 function getRandomPunctation() {
   const punctations = [".", ",", ";", ":", "'", "?", "!"];
   return punctations[Math.floor(Math.random() * punctations.length)];
 }
+
 // Enable/disable punctation
 const enablePuncBtn = document.querySelector(".enable-punctation");
 enablePuncBtn.addEventListener("click", () => {
@@ -93,7 +102,16 @@ enablePuncBtn.addEventListener("click", () => {
     openPunctation = true;
   }
 });
-
+// Changes generator mode like alphabet or numeric
+const changeGeneratorMode = document.querySelector(".change-mode");
+changeGeneratorMode.addEventListener("click", () => {
+  if (generatorMode === "alphabet") {
+    generatorMode = "numeric";
+  } else {
+    generatorMode = "alphabet";
+  }
+  changeGeneratorMode.textContent = `Mode: ${generatorMode}`;
+});
 // loop through swords array and appends span elements to wordArea
 function draw() {
   generate();
@@ -102,7 +120,7 @@ function draw() {
     for (let i = 0; i < e.length; i++) {
       let span = document.createElement("span");
       span.classList.add("letter");
-      if (e[i].match(/[a-z]/i)) {
+      if (e[i].match(/[a-z0-9]/i)) {
         span.textContent = e[i];
         wrapper.appendChild(span);
       } else if (e[i].match(/[?!.,;:']/i)) {
