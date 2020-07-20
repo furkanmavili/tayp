@@ -77,7 +77,10 @@ header {
   display: inline-block;
   color: var(--light);
 }
-
+.wrapper,
+.activate {
+  pointer-events: none;
+}
 .cursor {
   animation-name: example;
   animation-duration: 4s;

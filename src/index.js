@@ -19,6 +19,7 @@ window.addEventListener("click", isFocused);
 let activate = document.querySelector(".activate");
 // checks wordArea is focused or not, if so start keyboard event.
 function isFocused(e) {
+  console.log(e.target);
   if (Array.from(e.target.classList).includes("words")) {
     curTime = "";
     finTime = "";
@@ -117,6 +118,7 @@ function draw() {
   generate();
   swords.forEach((e) => {
     let wrapper = document.createElement("div");
+    wrapper.classList.add("wrapper");
     for (let i = 0; i < e.length; i++) {
       let span = document.createElement("span");
       span.classList.add("letter");
